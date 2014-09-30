@@ -2,16 +2,16 @@
 
 
 <?php 
+//hd2013.csv
 $importer = new csvfile("test.csv",true); 
-while($data = $importer->get(500)) 
+while($data = $importer->get(7000)) 
 { 
 print_r($data); 
 } 
 ?>
 
-
 <?php
- echo "<html><body><table>\n\n";
+ echo "<table>";
 class csvfile
 { 	
 	
@@ -53,19 +53,23 @@ class csvfile
         $data = array(); 
 
         if ($max_lines > 0) 
-            $line_count = 0; 
-        else 
-            $line_count = -1; // so loop limit is ignored 
+		
+            //$line_count = 0; 
+        //else 
+            //$line_count = -1; // so loop limit is ignored 
 
         while ($line_count < $max_lines && ($row = fgetcsv($this->fp, $this->length, $this->delimiter)) !== FALSE) 
         { 
             if ($this->parse_header) 
+			
             { 
+				
                 foreach ($this->header as $i => $heading_i) 
                 { 
 				
                     $row_new[$heading_i] = $row[$i]; 
                 } 
+				
                 $data[] = $row_new; 
             } 
             else 
@@ -73,65 +77,49 @@ class csvfile
                 $data[] = $row; 
             } 
 
-            if ($max_lines > 0) 
-               $line_count++; 
+            //if ($max_lines > 0) 
+             //  $line_count++; 
 			} 
-				
-
-
-
-
-
-
-
-
-				if(empty($_GET)){
+			if(empty($_GET)){
+			
 			foreach($data as $row) {
-			$i++;
-			$row_num = $i - 1;
-		echo '<a href=' . '"http://web.njit.edu/~rdc9/is218/csvtest.php?row=' . $row_num . '"' . '>University ' . $i . ' </a>';
+			
+			$inc++;
+			
+			$row_num = $inc - 1;
+		
+		echo '<a href=' . '"http://web.njit.edu/~rdc9/is218/csvtest.php?row=' . $row_num . '"' . '>University ' . $inc . ' </a>';
+		
 		echo '</p>';
 		}}		$row = $data[$_GET['row']];
+				
 				foreach($row as $key => $value) {
-			echo '<table><tr><td>' . $key . ': ' . $value . "</tr></td></table>\n";
+			
+			echo '<td>' . $key . '</td><br>' .  $value . "<br>\n";
+			
 			}
-				echo '<br>';
+		
+				//echo '<br>';
 			  
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+			
 			
 }
 
-
-echo "\n</table></body></html>";
-
+echo "\n</table>";
+				/*$t=0;
+				while($t<100{
+				if($t%10==0){
+					echo "<tr>".PHP_EOL;
+					}
+					echo "<td>".$t."</td>".PHP_EOL;
+					$t++;
+					if($t%10==0){
+						echo "</tr>".PHP_EOL;
+						}*/
 ?>
-<?php /*if(empty($_GET)) {
-    foreach($car_orders as $car_order) {
-      $i++;
-      $car_order_num = $i - 1;
-      echo '<a href=' . '"http://web.njit.edu/~rdc9/is218/cars.php?car_order=' . $car_order_num . '"' . '>Car Order ' . $i . ' </a>';
 
-      echo '</p>';
-    }
-  }
-
-  $car_order = $car_orders[$_GET['car_order']];
-  
-   foreach($car_order as $key => $value) {
-    echo $key . ': ' . $value . "<br>\n";
-   }*/
-
-?>
 
