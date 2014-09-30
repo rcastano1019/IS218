@@ -11,8 +11,7 @@ print_r($data);
 
 
 <?php
-echo "<html><body><table>\n\n";
-ini_set('display_errors', 'on');
+ echo "<html><body><table>\n\n";
 class csvfile
 { 	
 	
@@ -47,6 +46,7 @@ class csvfile
     } 
  
     function get($max_lines=0) 
+	
     { 
         //if $max_lines is set to 0, then get all the data 
 
@@ -74,28 +74,64 @@ class csvfile
             } 
 
             if ($max_lines > 0) 
-                $line_count++; 
-        } 
-		foreach($data as $row) {
-			
-			foreach($row as $key => $value) {
-				echo $key . ': ' . $value . "</br> \n";
+               $line_count++; 
+			} 
+				
+
+
+
+
+
+
+
+
+				if(empty($_GET)){
+			foreach($data as $row) {
+			$i++;
+			$row_num = $i - 1;
+		echo '<a href=' . '"http://web.njit.edu/~rdc9/is218/csvtest.php?row=' . $row_num . '"' . '>University ' . $i . ' </a>';
+		echo '</p>';
+		}}		$row = $data[$_GET['row']];
+				foreach($row as $key => $value) {
+			echo '<table><tr><td>' . $key . ': ' . $value . "</tr></td></table>\n";
 			}
 				echo '<br>';
-			}
+			  
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 			
-			return $data; 
-    }
-
-
 }
-
 
 
 echo "\n</table></body></html>";
 
 ?>
+<?php /*if(empty($_GET)) {
+    foreach($car_orders as $car_order) {
+      $i++;
+      $car_order_num = $i - 1;
+      echo '<a href=' . '"http://web.njit.edu/~rdc9/is218/cars.php?car_order=' . $car_order_num . '"' . '>Car Order ' . $i . ' </a>';
 
+      echo '</p>';
+    }
+  }
 
+  $car_order = $car_orders[$_GET['car_order']];
+  
+   foreach($car_order as $key => $value) {
+    echo $key . ': ' . $value . "<br>\n";
+   }*/
 
+?>
 
