@@ -11,7 +11,7 @@ print_r($data);
 ?>
 
 <?php
- echo "<table>";
+ 
 class csvfile
 { 	
 	
@@ -89,16 +89,18 @@ class csvfile
 			$row_num = $inc - 1;
 		
 		echo '<a href=' . '"http://web.njit.edu/~rdc9/is218/csvtest.php?row=' . $row_num . '"' . '>University ' . $inc . ' </a>';
-		
+	
 		echo '</p>';
 		}}		$row = $data[$_GET['row']];
 				
+				echo "<table border=1>";
 				foreach($row as $key => $value) {
-			
-			echo '<td>' . $key . '</td><br>' .  $value . "<br>\n";
-			
+					echo "<tr>";
+			echo "<th> $key</th> <td>  $value </td>";
+			echo "</tr>";
 			}
-		
+				echo "</table>";
+				
 				//echo '<br>';
 			  
 		}
@@ -109,7 +111,6 @@ class csvfile
 			
 }
 
-echo "\n</table>";
 				/*$t=0;
 				while($t<100{
 				if($t%10==0){
@@ -121,5 +122,4 @@ echo "\n</table>";
 						echo "</tr>".PHP_EOL;
 						}*/
 ?>
-
 
